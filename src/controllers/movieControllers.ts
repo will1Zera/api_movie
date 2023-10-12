@@ -38,3 +38,20 @@ export async function getAllMovies(req: Request, res: Response){
         Logger.error(`Erro no sistema: ${e.message}`);
     }
 };
+
+// Controller para deletar filme
+export async function removeMovie(req: Request, res: Response){
+    try {
+        const id = req.params.id;
+        const movie = await MovieModel.findById(id);
+
+        if(!movie){
+            return res.status(404);
+        }
+
+        await movie.deleteOne();
+        return res.status(200).json({msg: "Filme deletado com sucesso."});
+    } catch (e: any) {
+        Logger.error(`Erro no sistema: ${e.message}`);
+    }
+};

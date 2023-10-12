@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { createMovie, findMovieById, getAllMovies } from "./controllers/movieControllers";
+import { createMovie, findMovieById, getAllMovies, removeMovie } from "./controllers/movieControllers";
 import { validate } from "./middleware/handleValidation";
 import { movieCreateValidation } from "./middleware/movieValidation";
 
@@ -17,4 +17,7 @@ export default router
     .get("/movie/:id", findMovieById)
 
     // Rota para buscar todos os filmes
-    .get("/movie", getAllMovies); 
+    .get("/movie", getAllMovies)
+
+    // Rota para deletar filme
+    .delete("/movie/:id", removeMovie); 
