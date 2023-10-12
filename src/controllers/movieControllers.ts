@@ -28,3 +28,13 @@ export async function findMovieById(req: Request, res: Response){
         Logger.error(`Erro no sistema: ${e.message}`);
     }
 };
+
+// Controller para buscar todos os filmes
+export async function getAllMovies(req: Request, res: Response){
+    try {
+        const movies = await MovieModel.find();
+        return res.status(200).json(movies);
+    } catch (e: any) {
+        Logger.error(`Erro no sistema: ${e.message}`);
+    }
+};
