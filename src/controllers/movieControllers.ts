@@ -4,5 +4,11 @@ import Logger from '../../config/logger';
 
 // Controller para criar um filme
 export async function createMovie(req: Request, res: Response){
-    return res.status(201).send("Filme criado");
+    try {
+        const data = req.body;
+        const movie = await MovieModel.create(data);
+        return res.status(201).json(movie);
+    } catch (e: any) {
+        Logger.error(`Erro no sistema: ${e.message}`);
+    }
 };
