@@ -1,4 +1,5 @@
 require("dotenv").config();
+import "express-async-errors";
 import express from "express";
 import config from "config";
 import router from "./router";
@@ -8,7 +9,7 @@ import morganMiddleware from "./middleware/morganMiddleware";
 
 // Configuração inicial do express
 const app = express();
-app.use(express.json())
+app.use(express.json());
 
 // Importando o morgan
 app.use(morganMiddleware);
